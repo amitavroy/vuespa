@@ -3,7 +3,10 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 
 import App from './App'
+import Menu from './components/Menu'
 import DashboardPage from './pages/DashboardPage'
+
+Vue.component('nav-bar', Menu)
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
