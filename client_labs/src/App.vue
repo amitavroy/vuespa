@@ -1,84 +1,13 @@
 <script>
-  import {loginUrl, getHeader, userUrl} from './config'
-  import {clientId, clientSecret} from './env'
   export default {
-    data () {
-      return {
-        login: {
-          email: 'amitavroy@gmail.com',
-          password: 'password'
-        }
-      }
-    },
-    methods: {
-      handleLoginFormSubmit () {
-        const postData = {
-          grant_type: 'password',
-          client_id: clientId,
-          client_secret: clientSecret,
-          username: this.login.email,
-          password: this.login.password,
-          scope: ''
-        }
-        const authUser = {}
-        this.$http.post(loginUrl, postData)
-          .then(response => {
-            if (response.status === 200) {
-              console.log('Oauth token', response)
-              authUser.access_token = response.data.access_token
-              authUser.refresh_token = response.data.refresh_token
-              window.localStorage.setItem('authUser', JSON.stringify(authUser))
-              this.$http.get(userUrl, {headers: getHeader()})
-                .then(response => {
-                  console.log('user object', response)
-                  authUser.email = response.body.email
-                  authUser.name = response.body.name
-                  window.localStorage.setItem('authUser', JSON.stringify(authUser))
-                  this.$router.push({name: 'dashboard'})
-                })
-            }
-          })
-      }
-    }
+
   }
 </script>
 
 <template>
-  <div class="wrapper" id="home-wrapper">
-    <section class="login">
-      <div class="row">
-        <div class="col-md-6 col-md-push-3">
-          <div class="panel panel-default">
-            <div class="panel-heading"><strong>Login</strong> <i class="fa fa-sign-in pull-right"></i></div>
-            <div class="panel-body">
-              <form v-on:submit.prevent="handleLoginFormSubmit()">
-                <div class="form-group">
-                  <label>Email address</label>
-                  <input
-                    class="form-control"
-                    placeholder="Enter your email address"
-                    type="text"
-                    v-model="login.email"
-                  >
-                </div>
-
-                <div class="form-group">
-                  <label>Password</label>
-                  <input
-                    class="form-control"
-                    placeholder="Enter your password"
-                    type="password"
-                    v-model="login.password"
-                  >
-                </div>
-
-                <button class="btn btn-primary"> <i class="fa fa-sign-in"></i> Login</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <div>
+    <nav-bar></nav-bar>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -86,6 +15,4 @@
   @import './assets/css/bootstrap.css'
   @import './assets/css/font-awesome.min.css'
   @import './assets/css/ionicons.min.css'
-  #home-wrapper
-    margin-top: 100px
 </style>

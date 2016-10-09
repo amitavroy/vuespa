@@ -4,15 +4,18 @@ import VueResource from 'vue-resource'
 
 import App from './App'
 import Menu from './components/Menu'
+import Login from './components/user/Login'
+
 import DashboardPage from './pages/DashboardPage'
 
+Vue.component('app', App)
 Vue.component('nav-bar', Menu)
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
 const routes = [
-  {path: '/', component: App, name: 'home'},
+  {path: '/', component: Login, name: 'home'},
   {path: '/dashboard', component: DashboardPage, name: 'dashboard', meta: { requiresAuth: true }}
 ]
 
