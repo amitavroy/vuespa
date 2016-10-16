@@ -13,5 +13,5 @@ After authenticating the **User** at the following url /oauth/token, all subsequ
 urls will require the Authorization header. Below is the format in which the **access_token**
 needs to be supplied in order for the oauth authentication.  
 
-    Authorization: Bearer: [access_token] 
+    Authorization: Bearer [access_token] 
 
