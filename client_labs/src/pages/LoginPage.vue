@@ -1,7 +1,13 @@
 <script>
-  import {loginUrl, getHeader, userUrl} from './../../config'
-  import {clientId, clientSecret} from './../../env'
+  import {loginUrl, getHeader, userUrl} from './../config'
+  import {clientId, clientSecret} from './../env'
+  import {mapState} from 'vuex'
   export default {
+    computed: {
+      ...mapState({
+        userStore: state => state.userStore
+      })
+    },
     data () {
       return {
         login: {
@@ -34,6 +40,7 @@
                   authUser.email = response.body.email
                   authUser.name = response.body.name
                   window.localStorage.setItem('authUser', JSON.stringify(authUser))
+                  this.$store.dispatch('setUserObject', authUser)
                   this.$router.push({name: 'dashboard'})
                 })
             }
@@ -49,7 +56,7 @@
       <div class="row">
         <div class="col-md-6 col-md-push-3">
           <div class="panel panel-default">
-            <div class="panel-heading"><strong>Login</strong> <i class="fa fa-sign-in pull-right"></i></div>
+            <div class="panel-heading"><strong>Login</strong></div>
             <div class="panel-body">
               <form v-on:submit.prevent="handleLoginFormSubmit()">
                 <div class="form-group">
@@ -72,7 +79,7 @@
                   >
                 </div>
 
-                <button class="btn btn-primary"> <i class="fa fa-sign-in"></i> Login</button>
+                <button class="btn btn-primary">Login</button>
               </form>
             </div>
           </div>
@@ -84,5 +91,5 @@
 
 <style lang="sass">
   #login-wrapper
-    margin-top: 100px
+    margin-top: 50px
 </style>
