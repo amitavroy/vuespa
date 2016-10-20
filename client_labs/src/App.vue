@@ -27,4 +27,5 @@
 
 <style lang="sass">
   @import './assets/css/bootstrap.css'
+  @import './assets/css/global.scss'
 </style>
