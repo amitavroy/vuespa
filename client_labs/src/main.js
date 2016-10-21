@@ -9,8 +9,11 @@ import LoginPage from './pages/LoginPage'
 import DashboardPage from './pages/DashboardPage'
 import ChatPage from './pages/ChatPage'
 
+import Logger from './plugins/Logger'
+
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(Logger, {loggin: true})
 
 Vue.component('app', App)
 
@@ -35,6 +38,12 @@ router.beforeEach((to, from, next) => {
     }
   }
   next()
+})
+
+Vue.http.interceptors.push((request, next) => {
+  next((response) => {
+    if (response.status === 200) {}
+  })
 })
 
 new Vue({
