@@ -18,7 +18,7 @@ class Chat extends Model
 
     protected $appends = ['sender', 'receiver'];
 
-    protected $attributes = ['sender', 'receiver'];
+    // protected $attributes = ['sender', 'receiver'];
 
     public function getSenderAttribute()
     {

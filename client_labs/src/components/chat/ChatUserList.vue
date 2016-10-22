@@ -21,7 +21,13 @@
         return false
       },
       changeChatUser (user) {
-        this.$store.dispatch('setCurrentChatUser', user)
+        if (this.chatStore.currentChatUser === null || this.chatStore.currentChatUser.id !== user.id) {
+          this.$store.dispatch('setCurrentChatUser', user)
+            .then(response => {
+              let element = document.getElementById('chat-widget-wrapper')
+              element.scrollIntoView(false)
+            })
+        }
       }
     }
   }

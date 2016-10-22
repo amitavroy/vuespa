@@ -2,10 +2,13 @@
   import {mapState} from 'vuex'
   import ChatWidget from './../components/chat/ChatWidget'
   import ChatUserList from './../components/chat/ChatUserList'
+  import ChatAddWidget from './../components/chat/ChatAddWidget'
+
   export default {
     components: {
       'chat-block': ChatWidget,
-      'user-list': ChatUserList
+      'user-list': ChatUserList,
+      'add-chat': ChatAddWidget
     },
     computed: {
       ...mapState({
@@ -31,7 +34,12 @@
         </div>
 
         <div class="col-md-10">
-          <chat-block></chat-block>
+          <div class="chat-block">
+            <chat-block></chat-block>
+          </div>
+          <div class="add-chat-block">
+            <add-chat></add-chat>
+          </div>
         </div>
       </div>
     </section>
@@ -42,5 +50,8 @@
   @import './../assets/css/variables.scss';
   #user-list-col {
     border-right: 1px solid $border-color;
+  }
+  .add-chat-block {
+    position: relative;
   }
 </style>

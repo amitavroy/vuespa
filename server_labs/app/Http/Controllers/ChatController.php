@@ -22,6 +22,19 @@ class ChatController extends Controller
 
     public function saveUserChat (Request $request)
     {
-        
+        $sender_id = $request->user()->id;
+        $receiver_id = $request->input('receiver_id');
+        $chatText = $request->input('chat');
+
+        $data = [
+            'sender_id' => $sender_id, 
+            'receiver_id' => $receiver_id, 
+            'chat' => $chatText, 
+            'read' => 1
+        ];
+        $chat = Chat::create($data);
+        $finalData = Chat::where('id', $chat->id)->first();
+
+        return response(['data' => $finalData], 201);
     }
 }

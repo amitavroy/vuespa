@@ -46,6 +46,7 @@
     }
     &:last-child {
       border-bottom: none;
+      padding-bottom: 6em;
     }
   }
 </style>
