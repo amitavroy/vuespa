@@ -168,6 +168,7 @@ return [
          */
 
         Laravel\Passport\PassportServiceProvider::class,
+        Vinkla\Pusher\PusherServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -225,6 +226,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Pusher' => Vinkla\Pusher\Facades\Pusher::class,
 
     ],
 
