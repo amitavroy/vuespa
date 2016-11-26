@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Chat;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Vinkla\Pusher\Facades\Pusher as LaravelPusher;
 
 class ChatController extends Controller
 {
@@ -34,6 +35,7 @@ class ChatController extends Controller
         ];
         $chat = Chat::create($data);
         $finalData = Chat::where('id', $chat->id)->first();
+        LaravelPusher::trigger('chat_channel', 'chat_saved', ['message' => $finalData]);
 
         return response(['data' => $finalData], 201);
     }
