@@ -52,6 +52,9 @@ const actions = {
         Vue.$logger('info', 'addNewChatToConversation response', response)
         commit('ADD_CHAT_TO_CONVERSATION', response.body.data)
       })
+  },
+  newIncomingChat: ({commit}, chatMessage) => {
+    commit('ADD_CHAT_TO_CONVERSATION', chatMessage)
   }
 }
 
