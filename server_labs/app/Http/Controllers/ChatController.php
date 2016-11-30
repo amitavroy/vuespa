@@ -34,9 +34,8 @@ class ChatController extends Controller
             'read' => 1
         ];
         $chat = Chat::create($data);
-        $finalData = Chat::where('id', $chat->id)->first();
-        LaravelPusher::trigger('chat_channel', 'chat_saved', ['message' => $finalData]);
+        LaravelPusher::trigger('chat_channel', 'chat_saved', ['message' => $chat]);
 
-        return response(['data' => $finalData], 201);
+        return response(['data' => $chat], 201);
     }
 }
