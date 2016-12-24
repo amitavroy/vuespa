@@ -5,3 +5,14 @@
   color: #333333;
   background-color: transparent;
 }
+.nav-pills>li>a.router-link-active {
+  color: #fff;
+  background-color: #337ab7;
+}
+.PrivateMessage {
+  .message-table {
+    tr.unread {
+      font-weight: bold;
+    }
+  }
+}

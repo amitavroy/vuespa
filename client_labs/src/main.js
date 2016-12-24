@@ -8,7 +8,9 @@ import App from './App'
 import LoginPage from './pages/LoginPage'
 import DashboardPage from './pages/DashboardPage'
 import ChatPage from './pages/ChatPage'
-import PrivateMessageInbox from './pages/PrivateMessageInbox'
+
+import PrivateMessageInbox from './components/private-message/PrivateMessageInbox'
+import PrivateMessageSent from './components/private-message/PrivateMessageSent'
 
 import Logger from './plugins/Logger'
 
@@ -22,7 +24,8 @@ const routes = [
   {path: '/', component: LoginPage, name: 'home'},
   {path: '/dashboard', component: DashboardPage, name: 'dashboard', meta: { requiresAuth: true }},
   {path: '/chat', component: ChatPage, name: 'chat', meta: { requiresAuth: true }},
-  {path: '/my-pms', component: PrivateMessageInbox, name: 'my-pms', meta: { requiresAuth: true }}
+  {path: '/inbox-pms', component: PrivateMessageInbox, name: 'my-pms', meta: { requiresAuth: true }},
+  {path: '/sent-pms', component: PrivateMessageSent, name: 'my-pms-sent', meta: { requiresAuth: true }}
 ]
 
 const router = new VueRouter({
