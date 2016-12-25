@@ -6,19 +6,22 @@
     components: {
       'private-message-sidebar': PrivateMessageSidebar
     },
+    created () {
+      this.$store.dispatch('getPrivateMessageById', this.$route.params.pmId)
+    },
     computed: {
       ...mapState({
         pmStore: state => state.privateMessageStore
       })
     },
-    created () {
-      this.$store.dispatch('setUserMessagesRec')
+    destroyed () {
+      this.$store.dispatch('clearMessageView')
     }
   }
 </script>
 
 <template>
-  <div class="PrivateMessage PrivateMessage-Inbox">
+  <div class="PrivateMessage PrivateMessage-View">
     <section class="header">
       <h1 class="page-title">Private Messages - Inbox <small>My private messages.</small></h1>
     </section>
@@ -30,20 +33,13 @@
         </div>
 
         <div class="col-sm-8">
-          <table class="table table-striped table-hover table-bordered table-condensed message-table">
-            <tbody>
-              <tr v-for="message in pmStore.messageRec" v-bind:class="[message.read == 0 ? 'unread' : 'read']">
-                <td class="col-sm-3">{{message.sender.name}}</td>
-                <td class="col-sm-7">
-                  <router-link :to="{name: 'pm-view', params: { pmId: message.id }}">{{message.subject}}</router-link>
-                </td>
-                <td class="col-sm-2">{{message.created_at}}</td>
-              </tr>
-            </tbody>
-          </table>
+          <h3>{{pmStore.message.subject}}</h3>
+          <p>From: {{pmStore.message.sender.email}} <span class="pull-right">{{pmStore.message.sender.created_at}}</span></p>
+          <div class="message">
+            {{pmStore.message.message}}
+          </div>
         </div>
       </div>
     </section>
-
   </div>
 </template>

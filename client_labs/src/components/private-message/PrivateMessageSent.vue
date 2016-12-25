@@ -15,7 +15,7 @@
 
     <section class="content">
       <div class="row">
-        <div class="col-md-2 col-sm-2">
+        <div class="col-md-2 col-sm-2 col-with-right-border">
           <private-message-sidebar></private-message-sidebar>
         </div>
       </div>

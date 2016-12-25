@@ -15,4 +15,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
 
     /*Private Message urls*/
     Route::post('get-private-messages', 'PrivateMessageController@getPrimateMessages');
+    Route::post('get-private-message', 'PrivateMessageController@getPrivateMessageById');
+    Route::post('send-private-message', 'PrivateMessageController@sendPrivateMessage');
 });
