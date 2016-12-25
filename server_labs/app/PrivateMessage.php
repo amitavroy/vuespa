@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class PrivateMessage extends Model
@@ -11,6 +12,15 @@ class PrivateMessage extends Model
     protected $appends = ['sender', 'receiver'];
 
     // protected $attributes = ['sender', 'receiver'];
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->diffForHumans();
+    }
 
     public function getSenderAttribute()
     {

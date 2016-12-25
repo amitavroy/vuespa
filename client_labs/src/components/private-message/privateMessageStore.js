@@ -3,10 +3,13 @@ import {
   getHeader,
   getUserPrivateMessages,
   getPrivateMessageById,
-  sendPrivateMessage
+  sendPrivateMessage,
+  getUserPrivateMessagesSent,
+  getUserPMNotifications
 } from './../../config'
 
 const state = {
+  notifications: [],
   messageRec: [],
   messageSent: [],
   message: {
@@ -17,6 +20,9 @@ const state = {
 }
 
 const mutations = {
+  SET_USER_PM_NOTIFICATIONS (state, notifications) {
+    state.notifications = notifications
+  },
   SET_MESSAGES_REC (state, messages) {
     state.messageRec = messages
   },
@@ -32,10 +38,21 @@ const mutations = {
   },
   SEND_PRIVATE_MESSAGE (state, message) {
     state.messageSent.push(message)
+  },
+  SET_MESSAGES_SENT (state, messages) {
+    state.messageSent = messages
   }
 }
 
 const actions = {
+  getUserNotifications: ({commit}) => {
+    let postData = {}
+    return Vue.http.post(getUserPMNotifications, postData, {headers: getHeader()})
+      .then(response => {
+        Vue.$logger('info', 'getUserNotifications response', response)
+        commit('SET_USER_PM_NOTIFICATIONS', response.body.data)
+      })
+  },
   setUserMessagesRec: ({commit}, messages) => {
     let postData = {}
     return Vue.http.post(getUserPrivateMessages, postData, {headers: getHeader()})
@@ -60,6 +77,15 @@ const actions = {
       .then(response => {
         Vue.$logger('info', 'sendPrivateMessage response', response)
         commit('SEND_PRIVATE_MESSAGE', response.body.data)
+        return response
+      })
+  },
+  setUserMessagesSent: ({commit}) => {
+    let postData = {}
+    return Vue.http.post(getUserPrivateMessagesSent, postData, {headers: getHeader()})
+      .then(response => {
+        Vue.$logger('info', 'setUserMessagesSent response', response)
+        commit('SET_MESSAGES_SENT', response.body.data)
         return response
       })
   }

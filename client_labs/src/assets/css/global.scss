@@ -13,6 +13,21 @@
 .col-with-right-border {
   border-right: 1px solid $border-color;
 }
+/*Label*/
+.label {
+  position: absolute;
+  top: 12px;
+  right: 9px;
+  text-align: center;
+  font-size: 9px;
+  padding: 2px 3px;
+  line-height: .9;
+  &.label-success {
+    background-color: #00a65a !important;
+  }
+}
+/*End Label*/
+
 .PrivateMessage {
   .message-table {
     tr.unread {
@@ -20,3 +35,4 @@
     }
   }
 }
+
