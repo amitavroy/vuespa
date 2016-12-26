@@ -1,4 +1,4 @@
-export const apiDomain = 'http://192.168.0.105:8000/'
+export const apiDomain = 'http://localhost:8000/'
 export const loginUrl = apiDomain + 'oauth/token'
 export const userUrl = apiDomain + 'api/user'
 export const userListUrl = apiDomain + 'api/v1/user-list'
