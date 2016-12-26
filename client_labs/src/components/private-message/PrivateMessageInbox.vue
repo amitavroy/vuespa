@@ -13,6 +13,13 @@
     },
     created () {
       this.$store.dispatch('setUserMessagesRec')
+    },
+    sockets: {
+      messageRead (data) {
+        let message = JSON.data
+        this.$store.dispatch('messageReadNotification', message)
+        console.log('messageReadNotification')
+      }
     }
   }
 </script>

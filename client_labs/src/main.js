@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import store from './store'
 import Multiselect from 'vue-multiselect'
+import VueSocketio from 'vue-socket.io'
 
 import App from './App'
 
@@ -20,6 +21,7 @@ import Logger from './plugins/Logger'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(Logger, {loggin: true})
+Vue.use(VueSocketio, 'http://localhost:8890')
 
 Vue.component('multiselect', Multiselect)
 Vue.component('app', App)

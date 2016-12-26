@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import _ from 'lodash'
 import {
   getHeader,
   getUserPrivateMessages,
@@ -41,6 +42,23 @@ const mutations = {
   },
   SET_MESSAGES_SENT (state, messages) {
     state.messageSent = messages
+  },
+  NEW_PM_NOTIFICATION (state, message) {
+    state.notifications.unshift(message)
+    state.messageRec.unshift(message)
+  },
+  MESSAGE_READ_NOTIFICATION (state, message) {
+    _.forEach(state.messageRec, function (value, key) {
+      if (message.id === value.id) {
+        state.messageRec[key] = value
+      }
+    })
+
+    _.forEach(state.notifications, function (value, key) {
+      if (message.id === value.id) {
+        state.notifications.splice(key, 1)
+      }
+    })
   }
 }
 
@@ -88,6 +106,12 @@ const actions = {
         commit('SET_MESSAGES_SENT', response.body.data)
         return response
       })
+  },
+  newMessageNotification: ({commit}, message) => {
+    commit('NEW_PM_NOTIFICATION', message)
+  },
+  messageReadNotification: ({commit}, message) => {
+    commit('MESSAGE_READ_NOTIFICATION', message)
   }
 }
 

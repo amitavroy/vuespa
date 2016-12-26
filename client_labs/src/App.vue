@@ -14,6 +14,11 @@
     created () {
       const userObj = JSON.parse(window.localStorage.getItem('authUser'))
       this.$store.dispatch('setUserObject', userObj)
+    },
+    sockets: {
+      connect () {
+        console.log('socket connected')
+      }
     }
   }
 </script>

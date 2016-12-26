@@ -4,11 +4,26 @@
   export default {
     computed: {
       ...mapState({
-        pmStore: state => state.privateMessageStore
+        pmStore: state => state.privateMessageStore,
+        userStore: state => state.userStore
       })
     },
     created () {
       this.$store.dispatch('getUserNotifications')
+    },
+    sockets: {
+      message (data) {
+        let message = JSON.parse(data)
+        if (message.receiver.email === this.userStore.authUser.email) {
+          console.log(message)
+          this.$store.dispatch('newMessageNotification', message)
+        }
+      },
+      messageRead (data) {
+        let message = JSON.parse(data)
+        this.$store.dispatch('messageReadNotification', message)
+        console.log('messageReadNotification', message)
+      }
     }
   }
 </script>
