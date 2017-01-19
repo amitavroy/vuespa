@@ -29,7 +29,7 @@
 
     <section class="content">
       <div class="row">
-        <div class="col-md-2" id="user-list-col">
+        <div class="col-md-2 col-with-right-border" id="user-list-col">
           <user-list></user-list>
         </div>
 

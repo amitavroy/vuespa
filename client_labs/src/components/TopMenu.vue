@@ -1,6 +1,10 @@
 <script>
+  import PrivateMessageNotificationDropdown from './private-message/PrivateMessageNotificationDropdown'
   import {mapState} from 'vuex'
   export default {
+    components: {
+      'pm-notification': PrivateMessageNotificationDropdown
+    },
     computed: {
       ...mapState({
         userStore: state => state.userStore
@@ -37,6 +41,7 @@
         <ul class="nav navbar-nav">
           <li><router-link :to="{name: 'dashboard'}">Dashboard</router-link></li>
           <li><router-link :to="{name: 'chat'}">Chat</router-link></li>
+          <li><router-link :to="{name: 'my-pms'}">Private Messages</router-link></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -51,8 +56,9 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <pm-notification></pm-notification>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{userStore.authUser.name}} <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Action</a></li>
               <li><a href="#">Another action</a></li>

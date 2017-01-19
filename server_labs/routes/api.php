@@ -12,4 +12,11 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     /*Chat urls*/
     Route::post('get-user-conversation', 'ChatController@getUserConversationById');
     Route::post('save-chat', 'ChatController@saveUserChat');
+
+    /*Private Message urls*/
+    Route::post('get-private-message-notifications', 'PrivateMessageController@getUserNotifications');
+    Route::post('get-private-messages', 'PrivateMessageController@getPrimateMessages');
+    Route::post('get-private-message', 'PrivateMessageController@getPrivateMessageById');
+    Route::post('get-private-messages-sent', 'PrivateMessageController@getPrivateMessageSent');
+    Route::post('send-private-message', 'PrivateMessageController@sendPrivateMessage');
 });
