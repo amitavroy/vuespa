@@ -28,5 +28,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    
+    /**
+     * Relation with Token and User
+     */
+    public function token()
+    {
+        return $this->hasMany('App\Token');
+    }
 }
