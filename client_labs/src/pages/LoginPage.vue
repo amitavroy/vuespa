@@ -80,6 +80,7 @@
                 </div>
 
                 <button class="btn btn-primary">Login</button>
+                <router-link :to="{name: 'forgot-password'}">Forgot password</router-link>
               </form>
             </div>
           </div>
