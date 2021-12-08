@@ -1,6 +1,6 @@
 <script>
-  import {mapState} from 'vuex'
-  import Pusher from 'pusher-js'
+  import {mapState} from 'vuex';
+  import Pusher from 'pusher-js';
   export default {
     created () {
       this.pusher = new Pusher('49f09fe21ef2b756c13f', {
@@ -8,12 +8,12 @@
         cluster: 'mt1'
       })
       let that = this
-      this.channel = this.pusher.subscribe('chat_channel')
+      this.channel = this.pusher.subscribe('chat_channel');
       this.channel.bind('chat_saved', function (data) {
         that.$emit('incoming_chat', data)
       })
       this.$on('incoming_chat', function (chatMessage) {
-        this.incomingChat(chatMessage)
+        this.incomingChat(chatMessage);
       })
     },
     computed: {
@@ -56,7 +56,7 @@
                 element.scrollIntoView(false)
               })
           } else {
-            console.log('Message to some other user from the selected sender')
+            console.log('Message to some other user from the selected sender');
           }
         }
       }
