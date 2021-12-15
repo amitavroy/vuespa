@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import {forgotPassword} from './../config'
+  import {forgotPassword} from './../config';
   export default {
     data () {
       return {
@@ -36,7 +36,7 @@
     },
     methods: {
       handleForgotPasswordSubmit () {
-        var postData = {
+        let postData = {
           email: this.email,
           url: 'http://localhost:8080'
         }
