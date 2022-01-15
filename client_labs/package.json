@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "node-sass": "^4.13.1",
     "pusher-js": "^3.2.3",
     "sass-loader": "^4.0.2",
