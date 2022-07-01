@@ -1,8 +1,8 @@
-<script>
-  import {mapState} from 'vuex'
-  import ChatWidget from './../components/chat/ChatWidget'
-  import ChatUserList from './../components/chat/ChatUserList'
-  import ChatAddWidget from './../components/chat/ChatAddWidget'
+<script >
+  import {mapState} from 'vuex';
+  import ChatWidget from './../components/chat/ChatWidget';
+  import ChatUserList from './../components/chat/ChatUserList';
+  import ChatAddWidget from './../components/chat/ChatAddWidget';
 
   export default {
     components: {
@@ -16,7 +16,7 @@
       })
     },
     created () {
-      this.$store.dispatch('setUserList')
+      this.$store.dispatch('setUserList');
     }
   }
 </script>
